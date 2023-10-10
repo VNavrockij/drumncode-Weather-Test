@@ -6,10 +6,14 @@
 //
 
 import Foundation
+import Alamofire
 
 struct WeatherManager {
     func fetchWeather(cityName: String) {
-        let urlString = "\(Constants.path)\(cityName)"
-        print(urlString)
+        let requestWeatherAPI = WeatherAPI()
+        let request = AF.request("https://api.weatherapi.com/v1/current.json?key=\(requestWeatherAPI.key)&q=\(cityName)")
+        request.responseJSON { (data) in
+            print(data)
+        }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MainController: UIViewController {
     @IBOutlet weak var conditionImageView: UIImageView!
@@ -19,6 +20,7 @@ class MainController: UIViewController {
         super.viewDidLoad()
 
         searchTextField.delegate = self
+
 
     }
     @IBAction func searchPressed(_ sender: UIButton) {

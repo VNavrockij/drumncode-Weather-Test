@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  WeatherAPI.swift
 //  drumncode-Weather-Test
 //
 //  Created by Vitalii Navrotskyi on 10.10.2023.
