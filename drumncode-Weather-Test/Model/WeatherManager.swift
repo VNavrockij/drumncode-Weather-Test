@@ -9,11 +9,16 @@ import Foundation
 import Alamofire
 
 struct WeatherManager {
-    func fetchWeather(cityName: String) {
+    func fetchWeather(cityName: String, completionHandler: @escaping (CurrentWeather) -> Void) {
         let requestWeatherAPI = WeatherAPI()
         let request = AF.request("https://api.weatherapi.com/v1/current.json?key=\(requestWeatherAPI.key)&q=\(cityName)")
-        request.responseJSON { (data) in
-            print(data)
+        request.responseDecodable(of: CurrentWeather.self) { [self] response in
+            switch response.result {
+                case .success(let weatherData):
+                    completionHandler(weatherData)
+                case .failure(let weatherFetcherror):
+                    break
+            }
         }
     }
 }

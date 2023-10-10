@@ -14,8 +14,10 @@ extension MainController: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let city = searchTextField.text {
-            weatherManager.fetchWeather(cityName: city)
+        guard let city = searchTextField.text else { return }
+
+        weatherManager.fetchWeather(cityName: city) { weatherData in
+            self.setUI(weatherData: weatherData)
         }
         searchTextField.text = ""
     }
@@ -26,6 +28,13 @@ extension MainController: UITextFieldDelegate {
         } else {
             textField.placeholder = "Enter the city"
             return false
+        }
+    }
+
+    func setUI(weatherData: CurrentWeather) {
+        DispatchQueue.main.async {
+            self.cityLabel.text = weatherData.location.name
+            self.temperatureLabel.text = String(weatherData.current.tempC) + "℃"
         }
     }
 }
