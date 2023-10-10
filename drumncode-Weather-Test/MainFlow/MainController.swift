@@ -13,6 +13,8 @@ class MainController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
 
+    let weatherManager = WeatherManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

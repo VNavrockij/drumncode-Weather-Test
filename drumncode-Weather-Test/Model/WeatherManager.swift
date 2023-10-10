@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct WeatherManager {
+    func fetchWeather(cityName: String) {
+        let urlString = "\(Constants.path)\(cityName)"
+        print(urlString)
+    }
+}
