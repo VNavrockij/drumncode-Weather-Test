@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainController.swift
 //  drumncode-Weather-Test
 //
 //  Created by Vitalii Navrotskyi on 10.10.2023.
@@ -7,14 +7,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainController: UIViewController {
+    @IBOutlet weak var conditionImageView: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var searchTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("Hello, Drum'n'Code")
+        searchTextField.delegate = self
+
     }
-
-
+    @IBAction func searchPressed(_ sender: UIButton) {
+        searchTextField.endEditing(true)
+    }
 }
-

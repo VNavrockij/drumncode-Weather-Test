@@ -5,4 +5,12 @@
 //  Created by Vitalii Navrotskyi on 10.10.2023.
 //
 
-import Foundation
+import UIKit
+
+extension MainController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.endEditing(true)
+        print(searchTextField.text)
+        return true
+    }
+}
