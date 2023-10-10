@@ -16,9 +16,11 @@ struct CurrentWeather: Codable {
 // MARK: - Current
 struct Current: Codable {
     let tempC: Double
+    let condition: Condition
 
     enum CodingKeys: String, CodingKey {
         case tempC = "temp_c"
+        case condition
     }
 }
 

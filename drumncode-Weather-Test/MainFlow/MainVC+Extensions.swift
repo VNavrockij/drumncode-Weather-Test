@@ -32,7 +32,10 @@ extension MainController: UITextFieldDelegate {
     }
 
     func setUI(weatherData: CurrentWeather) {
+        guard let url = URL(string: "https:\(weatherData.current.condition.icon)") else { return }
+
         DispatchQueue.main.async {
+            self.conditionImageView.imageFrom(url: url)
             self.cityLabel.text = weatherData.location.name
             self.temperatureLabel.text = String(weatherData.current.tempC) + "℃"
         }
