@@ -74,3 +74,17 @@ extension MainController {
         }
     }
 }
+
+extension MainController: UICollectionViewDelegate {}
+
+extension MainController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        20
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellForCast", for: indexPath)
+
+        return cell
+    }
+}

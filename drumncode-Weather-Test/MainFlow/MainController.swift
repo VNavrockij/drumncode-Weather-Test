@@ -13,6 +13,9 @@ class MainController: UIViewController {
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var searchTextField: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+
 
     let weatherManager = WeatherManager()
 
@@ -20,6 +23,8 @@ class MainController: UIViewController {
         super.viewDidLoad()
 
         searchTextField.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
 
         let data = getWeatherFromUserDefaults()
 
