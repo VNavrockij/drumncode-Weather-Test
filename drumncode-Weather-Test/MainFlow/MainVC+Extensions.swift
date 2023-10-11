@@ -9,17 +9,19 @@ import UIKit
 
 extension MainController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchTextField.endEditing(true)
+        endEditingTextField()
         return true
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let city = searchTextField.text else { return }
+        guard let city = getCity(textField) else { return }
 
         weatherManager.fetchWeather(cityName: city) { weatherData in
             self.setUI(weatherData: weatherData)
+            self.saveLastSession(weatherData)
+
         }
-        searchTextField.text = ""
+        clearTextFieldPlaceHolder()
     }
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -32,12 +34,38 @@ extension MainController: UITextFieldDelegate {
     }
 
     func setUI(weatherData: CurrentWeather) {
-        guard let url = URL(string: "https:\(weatherData.current.condition.icon)") else { return }
+        guard let url = URL(string: "\(Constatnts.https)\(weatherData.current.condition.icon)") else { return }
 
         DispatchQueue.main.async {
-            self.conditionImageView.imageFrom(url: url)
-            self.cityLabel.text = weatherData.location.name
-            self.temperatureLabel.text = String(weatherData.current.tempC) + "℃"
+            self.configureUI(weatherData, url)
+        }
+    }
+
+    func saveLastSession(_ weather: CurrentWeather) {
+        if let jsonData = encodeWeatherToJSON(weather) {
+            UserDefaults.standard.set(jsonData, forKey: "savedWeather")
+        }
+    }
+
+    func encodeWeatherToJSON(_ weather: CurrentWeather) -> Data? {
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try encoder.encode(weather)
+            return jsonData
+        } catch {
+            print("Failed to encode Weather: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    func decodeWeatherFromJSON(_ jsonData: Data) -> CurrentWeather? {
+        let decoder = JSONDecoder()
+        do {
+            let weather = try decoder.decode(CurrentWeather.self, from: jsonData)
+            return weather
+        } catch {
+            print("Failed to decode Weather: \(error.localizedDescription)")
+            return nil
         }
     }
 }
