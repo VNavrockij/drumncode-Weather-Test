@@ -19,6 +19,7 @@ extension MainController: UITextFieldDelegate {
         weatherManager.fetchWeather(cityName: city) { weatherData in
             self.setUI(weatherData: weatherData)
             self.saveLastSession(weatherData)
+            print(weatherData)
 
         }
         clearTextFieldPlaceHolder()
@@ -33,6 +34,7 @@ extension MainController: UITextFieldDelegate {
         }
     }
 
+// MARK: set UI elements
     func setUI(weatherData: CurrentWeather) {
         guard let url = URL(string: "\(Constatnts.https)\(weatherData.current.condition.icon)") else { return }
 
@@ -40,7 +42,10 @@ extension MainController: UITextFieldDelegate {
             self.configureUI(weatherData, url)
         }
     }
+}
 
+// MARK: - Save Last Session
+extension MainController {
     func saveLastSession(_ weather: CurrentWeather) {
         if let jsonData = encodeWeatherToJSON(weather) {
             UserDefaults.standard.set(jsonData, forKey: "savedWeather")

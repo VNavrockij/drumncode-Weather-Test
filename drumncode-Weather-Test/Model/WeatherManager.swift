@@ -11,7 +11,7 @@ import Alamofire
 struct WeatherManager {
     func fetchWeather(cityName: String, completionHandler: @escaping (CurrentWeather) -> Void) {
         let requestWeatherAPI = WeatherAPI()
-        let request = AF.request("https://api.weatherapi.com/v1/current.json?key=\(requestWeatherAPI.key)&q=\(cityName)")
+        let request = AF.request("https://api.weatherapi.com/v1/forecast.json?key=\(requestWeatherAPI.key)&q=\(cityName)")
         request.responseDecodable(of: CurrentWeather.self) { response in
             switch response.result {
                 case .success(let weatherData):
