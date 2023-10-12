@@ -13,11 +13,10 @@ class MainController: UIViewController {
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var searchTextField: UITextField!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-
+    @IBOutlet private weak var collectionView: UICollectionView!
 
     let weatherManager = WeatherManager()
+    var hourlyWeather: CurrentWeather?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,7 @@ class MainController: UIViewController {
 
         let data = getWeatherFromUserDefaults()
 
-        setLastSessionUI(data)
+        setLastSessionUI(data as Any)
     }
 
     @IBAction func searchPressed(_ sender: UIButton) {
@@ -36,9 +35,15 @@ class MainController: UIViewController {
     }
 
     func setLastSessionUI(_ data: Any) {
-        guard let newData = data as? CurrentWeather else { return }
+        guard let newData = data as? CurrentWeather else {
+            cityLabel.text = ""
+            temperatureLabel.text = ""
+            return
+        }
         guard let url = URL(string: "\(Constatnts.https)\(newData.current.condition.icon)") else { return }
-        
+
+        hourlyWeather = newData
+
         configureUI(newData, url)
     }
 
@@ -46,6 +51,7 @@ class MainController: UIViewController {
         conditionImageView.imageFrom(url: url)
         self.cityLabel.text = weatherData.location.name
         self.temperatureLabel.text = String(weatherData.current.tempC) + Constatnts.temperature
+        collectionView.reloadData()
     }
 
     func getWeatherFromUserDefaults() -> CurrentWeather? {

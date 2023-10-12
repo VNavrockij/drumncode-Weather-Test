@@ -63,7 +63,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellForCast" id="186-D4-qBw">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellForCast" id="186-D4-qBw" customClass="HourlyCollectionViewCell" customModule="drumncode_Weather_Test" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1.3333333333333333" width="68.333333333333329" height="68.333333333333314"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qiP-gD-4H6">
@@ -99,6 +99,11 @@
                                                 <constraint firstItem="vFv-fu-ntT" firstAttribute="top" secondItem="qiP-gD-4H6" secondAttribute="top" constant="8" id="inI-lA-mUb"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="hourlyLabel" destination="Zne-r2-pZk" id="7U6-Mz-1tu"/>
+                                            <outlet property="hourlyTemperature" destination="oHS-2X-Y3b" id="W7c-id-bOB"/>
+                                            <outlet property="iconImageView" destination="TwO-92-1l4" id="thk-0b-iOp"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -150,7 +155,7 @@
         <image name="cloud.sun.fill" catalog="system" width="128" height="101"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemFillColor">
-            <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

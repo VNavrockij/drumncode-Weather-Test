@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - UITextFieldDelegate
 extension MainController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditingTextField()
@@ -16,11 +17,10 @@ extension MainController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let city = getCity(textField) else { return }
 
-        weatherManager.fetchWeather(cityName: city) { weatherData in
-            self.setUI(weatherData: weatherData)
-            self.saveLastSession(weatherData)
-            print(weatherData)
-
+        weatherManager.fetchWeather(cityName: city) { [weak self] weatherData in
+            self?.setUI(weatherData: weatherData)
+            self?.saveLastSession(weatherData)
+            self?.hourlyWeather = weatherData
         }
         clearTextFieldPlaceHolder()
     }
@@ -75,16 +75,28 @@ extension MainController {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension MainController: UICollectionViewDelegate {}
 
+// MARK: - UICollectionViewDataSource
 extension MainController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        guard let cells = hourlyWeather?.forecast.forecastday[0].hour.count else { return 0 }
+
+        return cells
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellForCast", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constatnts.identifier,
+                                                            for: indexPath) as? HourlyCollectionViewCell else { return UICollectionViewCell() }
 
+        let forecastDay = hourlyWeather?.forecast.forecastday[0].hour[indexPath.row]
+
+        cell.configureCell(forecast: forecastDay)
         return cell
     }
 }
