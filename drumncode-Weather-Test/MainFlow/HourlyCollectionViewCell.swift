@@ -18,7 +18,7 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         guard let hourly = forecast?.time else { return }
         guard let tempC = forecast?.tempC else { return }
 
-        hourlyLabel?.text = hourly
+        hourlyLabel?.text = formatTimeString(hourly)
         iconImageView?.imageFrom(url: url)
         hourlyTemperature?.text = String(tempC) + Constatnts.temperature
     }

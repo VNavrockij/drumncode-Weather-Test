@@ -102,10 +102,6 @@
                                                 <constraint firstItem="vFv-fu-ntT" firstAttribute="top" secondItem="qiP-gD-4H6" secondAttribute="top" constant="8" id="inI-lA-mUb"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="qiP-gD-4H6" firstAttribute="leading" secondItem="186-D4-qBw" secondAttribute="leadingMargin" constant="-8" id="WPn-M8-iTh"/>
-                                            <constraint firstItem="qiP-gD-4H6" firstAttribute="top" secondItem="186-D4-qBw" secondAttribute="topMargin" constant="-8" id="uin-WV-NSB"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="hourlyLabel" destination="Zne-r2-pZk" id="7U6-Mz-1tu"/>
                                             <outlet property="hourlyTemperature" destination="oHS-2X-Y3b" id="W7c-id-bOB"/>
