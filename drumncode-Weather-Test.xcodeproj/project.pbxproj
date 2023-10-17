@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA3EA1962ADF066100271813 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EA1952ADF066100271813 /* SearchViewController.swift */; };
 		FA6B73042AD560B400A35EF4 /* MainVC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B73032AD560B400A35EF4 /* MainVC+Extensions.swift */; };
 		FA6B73062AD5674A00A35EF4 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B73052AD5674A00A35EF4 /* WeatherManager.swift */; };
 		FA6B73092AD56A2300A35EF4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FA6B73082AD56A2300A35EF4 /* Alamofire */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA3EA1952ADF066100271813 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FA6B73032AD560B400A35EF4 /* MainVC+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+Extensions.swift"; sourceTree = "<group>"; };
 		FA6B73052AD5674A00A35EF4 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		FA6B730A2AD572FB00A35EF4 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				FA87E0972AD5532100AB1BC0 /* Main.storyboard */,
 				FABE7BCC2AD86FEB0036CC36 /* Cell */,
 				FA6B73022AD5608B00A35EF4 /* Extensions */,
+				FA3EA1952ADF066100271813 /* SearchViewController.swift */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				FA6B730B2AD572FB00A35EF4 /* WeatherData.swift in Sources */,
 				FABE7BCE2AD870110036CC36 /* HourlyCollectionViewCell+Extension.swift in Sources */,
 				FA6B73042AD560B400A35EF4 /* MainVC+Extensions.swift in Sources */,
+				FA3EA1962ADF066100271813 /* SearchViewController.swift in Sources */,
 				FA87E0922AD5532100AB1BC0 /* AppDelegate.swift in Sources */,
 				FA87E0942AD5532100AB1BC0 /* SceneDelegate.swift in Sources */,
 				FA87E0AA2AD5567100AB1BC0 /* WeatherAPI.swift in Sources */,

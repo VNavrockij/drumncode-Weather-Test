@@ -3,4 +3,70 @@
    uuid = "44FA3CCA-4E1A-4DDE-9B11-1B74B07409F4"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C46BBD4-EADF-4DBC-8332-E218ACF4C9FF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drumncode-Weather-Test/MainFlow/MainController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "receivedData"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9189B7E7-A560-40BC-A2C6-B30A0887B0D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drumncode-Weather-Test/MainFlow/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "searchBarSearchButtonClicked(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9189B7E7-A560-40BC-A2C6-B30A0887B0D3 - 422c18aff7b71d94"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "drumncode_Weather_Test.SearchViewController.searchBarSearchButtonClicked(__C.UISearchBar) -&gt; ()"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/MainFlow/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "81">
+               </Location>
+               <Location
+                  uuid = "9189B7E7-A560-40BC-A2C6-B30A0887B0D3 - 422c18aff7b71d56"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "drumncode_Weather_Test.SearchViewController.searchBarSearchButtonClicked(__C.UISearchBar) -&gt; ()"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/MainFlow/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "81">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

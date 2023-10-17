@@ -18,6 +18,18 @@ class MainController: UIViewController {
     let weatherManager = WeatherManager()
     var hourlyWeather: CurrentWeather?
 
+    var receivedData: String? {
+        didSet {
+            guard let city = receivedData else { return }
+
+            weatherManager.fetchWeather(cityName: city) { [weak self] weatherData in
+                self?.setUI(weatherData: weatherData)
+                self?.saveLastSession(weatherData)
+                self?.hourlyWeather = weatherData
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +40,10 @@ class MainController: UIViewController {
         let data = getWeatherFromUserDefaults()
 
         setLastSessionUI(data as Any)
+
+        if let safeCity = receivedData {
+                    print(data) // Выводит "Hello, Second ViewController!"
+                }
     }
 
     @IBAction func searchPressed(_ sender: UIButton) {
