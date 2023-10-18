@@ -1,5 +1,5 @@
 //
-//  MainVC+Extensions.swift
+//  MainViewController+Extensions.swift
 //  drumncode-Weather-Test
 //
 //  Created by Vitalii Navrotskyi on 10.10.2023.
@@ -7,42 +7,14 @@
 
 import UIKit
 
-// MARK: - UITextFieldDelegate
-extension MainViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        endEditingTextField()
-        return true
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let city = getCity(textField) else { return }
-
-        weatherManager.fetchWeather(cityName: city) { [weak self] weatherData in
-            self?.setUI(weatherData: weatherData)
-            self?.saveLastSession(weatherData)
-            self?.hourlyWeather = weatherData
-        }
-        clearTextFieldPlaceHolder()
-    }
-
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" {
-            return true
-        } else {
-            textField.placeholder = "Enter the city"
-            return false
-        }
-    }
-
 // MARK: set UI elements
+extension MainViewController {
     func setUI(weatherData: CurrentWeather) {
         guard let url = URL(string: "\(Constatnts.https)\(weatherData.current.condition.icon)") else { return }
 
         DispatchQueue.main.async {
             self.configureUI(weatherData, url)
         }
-
-        print("UI should be updated")
     }
 }
 
@@ -78,7 +50,7 @@ extension MainViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension MainViewController: UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 90, height: 90)
     }
@@ -107,8 +79,9 @@ extension MainViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constatnts.identifier,
-                                                            for: indexPath) as? HourlyCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueCell(withType: HourlyCollectionViewCell.self,
+                                                    for: indexPath)
+        else { return .init()}
 
         let forecastDay = hourlyWeather?.forecast.forecastday[0].hour[indexPath.row]
 
@@ -116,5 +89,3 @@ extension MainViewController: UICollectionViewDataSource {
         return cell
     }
 }
-
-extension MainViewController: UICollectionViewDelegateFlowLayout {}
