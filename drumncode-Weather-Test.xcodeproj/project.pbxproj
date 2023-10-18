@@ -59,21 +59,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA02CD272AD7256D00DEBCF7 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				FA70C5B42AD6999B003AF32A /* Constants.swift */,
-				FA6B730C2AD5808300A35EF4 /* UIImageView+Extension.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		FA6B73022AD5608B00A35EF4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				FA6B73032AD560B400A35EF4 /* MainVC+Extensions.swift */,
 				FABE7BCD2AD870110036CC36 /* HourlyCollectionViewCell+Extension.swift */,
 				FA6BF5AA2AE00B8F007ED505 /* SearchVC+Extensions.swift */,
+				FA6B730C2AD5808300A35EF4 /* UIImageView+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -107,7 +99,6 @@
 			children = (
 				FA87E0A72AD554DF00AB1BC0 /* MainFlow */,
 				FA87E0A82AD5565E00AB1BC0 /* Model */,
-				FA02CD272AD7256D00DEBCF7 /* Helpers */,
 				FA87E0A62AD554B800AB1BC0 /* Application */,
 				FA87E0A52AD553FF00AB1BC0 /* Resources */,
 			);
@@ -148,6 +139,7 @@
 		FA87E0A82AD5565E00AB1BC0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA70C5B42AD6999B003AF32A /* Constants.swift */,
 				FA87E0A92AD5567100AB1BC0 /* WeatherAPI.swift */,
 				FA6B73052AD5674A00A35EF4 /* WeatherManager.swift */,
 				FA6B730A2AD572FB00A35EF4 /* WeatherData.swift */,
