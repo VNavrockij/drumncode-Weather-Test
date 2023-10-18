@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class MainController: UIViewController {
+class MainViewController: UIViewController {
     @IBOutlet private weak var conditionImageView: UIImageView!
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var cityLabel: UILabel!

@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UITextFieldDelegate
-extension MainController: UITextFieldDelegate {
+extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditingTextField()
         return true
@@ -47,7 +47,7 @@ extension MainController: UITextFieldDelegate {
 }
 
 // MARK: - Save Last Session
-extension MainController {
+extension MainViewController {
     func saveLastSession(_ weather: CurrentWeather) {
         if let jsonData = encodeWeatherToJSON(weather) {
             UserDefaults.standard.set(jsonData, forKey: "savedWeather")
@@ -78,7 +78,7 @@ extension MainController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension MainController: UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 90, height: 90)
     }
@@ -95,7 +95,7 @@ extension MainController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension MainController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -117,4 +117,4 @@ extension MainController: UICollectionViewDataSource {
     }
 }
 
-extension MainController: UICollectionViewDelegateFlowLayout {}
+extension MainViewController: UICollectionViewDelegateFlowLayout {}
