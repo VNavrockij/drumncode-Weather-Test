@@ -8,30 +8,46 @@
 import UIKit
 import Alamofire
 
-class MainController: UIViewController {
+class MainViewController: UIViewController {
     @IBOutlet private weak var conditionImageView: UIImageView!
     @IBOutlet private weak var temperatureLabel: UILabel!
     @IBOutlet private weak var cityLabel: UILabel!
-    @IBOutlet private weak var searchTextField: UITextField!
     @IBOutlet private weak var collectionView: UICollectionView!
 
     let weatherManager = WeatherManager()
     var hourlyWeather: CurrentWeather?
 
+    var receivedData: String? {
+        didSet {
+            guard let city = receivedData else { return }
+
+            setCityWeather(city)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchTextField.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
 
-        let data = getWeatherFromUserDefaults()
-
-        setLastSessionUI(data as Any)
+        setWeather()
     }
 
-    @IBAction func searchPressed(_ sender: UIButton) {
-        endEditingTextField()
+    func setWeather() {
+        if let data = getWeatherFromUserDefaults() {
+            setLastSessionUI(data as Any)
+        } else {
+            setCityWeather(Constatnts.defaultCity)
+        }
+    }
+
+    func setCityWeather(_ city: String) {
+        weatherManager.fetchWeather(cityName: city) { [weak self] weatherData in
+            self?.setUI(weatherData: weatherData)
+            self?.saveLastSession(weatherData)
+            self?.hourlyWeather = weatherData
+        }
     }
 
     func setLastSessionUI(_ data: Any) {
@@ -48,29 +64,16 @@ class MainController: UIViewController {
     }
 
     func configureUI(_ weatherData: CurrentWeather, _ url: URL) {
-        conditionImageView.imageFrom(url: url)
+        self.conditionImageView.imageFrom(url: url)
         self.cityLabel.text = weatherData.location.name
         self.temperatureLabel.text = String(weatherData.current.tempC) + Constatnts.temperature
         collectionView.reloadData()
     }
 
     func getWeatherFromUserDefaults() -> CurrentWeather? {
-        if let jsonData = UserDefaults.standard.data(forKey: "savedWeather") {
+        if let jsonData = UserDefaults.standard.data(forKey: Constatnts.saveSession) {
             return decodeWeatherFromJSON(jsonData)
         }
         return nil
-    }
-
-    func endEditingTextField() {
-        searchTextField.endEditing(true)
-    }
-
-    func getCity(_ searchCity: UITextField) -> String? {
-        let city = searchCity.text
-        return city
-    }
-
-    func clearTextFieldPlaceHolder() {
-        searchTextField.text = ""
     }
 }

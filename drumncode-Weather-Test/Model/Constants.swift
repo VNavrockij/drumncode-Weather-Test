@@ -10,6 +10,6 @@ import Foundation
 struct Constatnts {
     static let https = "https:"
     static let temperature = " ℃"
-    static let lastSession = "lastSession"
-    static let identifier = "cellForCast"
+    static let saveSession = "savedWeather"
+    static let defaultCity = "Zaporozhye"
 }
