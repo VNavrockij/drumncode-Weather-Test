@@ -41,6 +41,8 @@ extension MainController: UITextFieldDelegate {
         DispatchQueue.main.async {
             self.configureUI(weatherData, url)
         }
+
+        print("UI should be updated")
     }
 }
 
@@ -83,7 +85,7 @@ extension MainController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        8.0
+        1.0
     }
 
     func collectionView(_ collectionView: UICollectionView,

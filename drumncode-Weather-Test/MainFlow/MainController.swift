@@ -21,12 +21,14 @@ class MainController: UIViewController {
     var receivedData: String? {
         didSet {
             guard let city = receivedData else { return }
+            
+                weatherManager.fetchWeather(cityName: city) { [weak self] weatherData in
+                    print(self)
+                    self?.setUI(weatherData: weatherData)
+                    self?.saveLastSession(weatherData)
+                    self?.hourlyWeather = weatherData
+                }
 
-            weatherManager.fetchWeather(cityName: city) { [weak self] weatherData in
-                self?.setUI(weatherData: weatherData)
-                self?.saveLastSession(weatherData)
-                self?.hourlyWeather = weatherData
-            }
         }
     }
 
@@ -40,10 +42,6 @@ class MainController: UIViewController {
         let data = getWeatherFromUserDefaults()
 
         setLastSessionUI(data as Any)
-
-        if let safeCity = receivedData {
-                    print(data) // Выводит "Hello, Second ViewController!"
-                }
     }
 
     @IBAction func searchPressed(_ sender: UIButton) {
@@ -64,7 +62,7 @@ class MainController: UIViewController {
     }
 
     func configureUI(_ weatherData: CurrentWeather, _ url: URL) {
-        conditionImageView.imageFrom(url: url)
+        self.conditionImageView.imageFrom(url: url)
         self.cityLabel.text = weatherData.location.name
         self.temperatureLabel.text = String(weatherData.current.tempC) + Constatnts.temperature
         collectionView.reloadData()
