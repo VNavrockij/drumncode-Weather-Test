@@ -7,13 +7,24 @@
 
 import UIKit
 
+class DataManager {
+    static let shared = DataManager()
+    var arrCities: [String] = []
+}
+
 class SearchViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
 
     var searchHandler: ((String) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.delegate = self
+        tableView.dataSource = self
+
+        self.navigationItem.setHidesBackButton(true, animated: true)
 
         navigationItem.titleView = searchBar
         searchBar.delegate = self
@@ -24,4 +35,73 @@ class SearchViewController: UIViewController {
             }
         }
     }
+
+    func reloadData() {
+        tableView.reloadData()
+    }
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Удаляем элемент из источника данных
+            DataManager.shared.arrCities.remove(at: indexPath.row)
+
+            // Удаляем ячейку из таблицы
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchHandler?(DataManager.shared.arrCities[indexPath.row])
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+}
+
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Last search"
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        DataManager.shared.arrCities.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewIdentifier, for: indexPath)
+
+        cell.textLabel?.text = DataManager.shared.arrCities[indexPath.row]
+        return cell
+    }
+}
+
+public extension UITableView {
+    /**
+     DequeueCell by passing the type of UITableViewCell
+     - Parameter type: UITableViewCell.Type
+     */
+    func dequeueCell<T: UITableViewCell>(withType type: T.Type) -> T? {
+        dequeueReusableCell(withIdentifier: type.identifier) as? T
+    }
+
+    /**
+     DequeueCell by passing the type of UITableViewCell and IndexPath
+     - Parameter type: UITableViewCell.Type
+     - Parameter indexPath: IndexPath
+     */
+    func dequeueCell<T: UITableViewCell>(withType type: T.Type, for indexPath: IndexPath) -> T? {
+        dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as? T
+    }
+
+}
+
+public extension UITableViewCell {
+    static var identifier: String { .init(describing: self) }
 }

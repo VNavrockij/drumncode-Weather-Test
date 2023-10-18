@@ -10,6 +10,8 @@ import UIKit
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
+            DataManager.shared.arrCities.append(searchText)
+            reloadData()
             searchHandler?(searchText)
         }
     }
