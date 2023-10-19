@@ -66,6 +66,7 @@
 			children = (
 				FA6B73032AD560B400A35EF4 /* MainViewController+Extensions.swift */,
 				FABE7BCD2AD870110036CC36 /* HourlyCollectionViewCell+Extension.swift */,
+				FA6BF5AC2AE02B22007ED505 /* ExtensionsSearchVC */,
 				FA6B730C2AD5808300A35EF4 /* UIImageView+Extension.swift */,
 				FA8AFF982AE02F6B00C76054 /* UICollectionView+Extension.swift */,
 			);
@@ -76,17 +77,16 @@
 			isa = PBXGroup;
 			children = (
 				FA3EA1952ADF066100271813 /* SearchViewController.swift */,
-				FA6BF5AC2AE02B22007ED505 /* Extensions */,
 			);
 			name = SecondVC;
 			sourceTree = "<group>";
 		};
-		FA6BF5AC2AE02B22007ED505 /* Extensions */ = {
+		FA6BF5AC2AE02B22007ED505 /* ExtensionsSearchVC */ = {
 			isa = PBXGroup;
 			children = (
 				FA6BF5AA2AE00B8F007ED505 /* SearchVC+Extensions.swift */,
 			);
-			name = Extensions;
+			name = ExtensionsSearchVC;
 			sourceTree = "<group>";
 		};
 		FA87E0852AD5532100AB1BC0 = {

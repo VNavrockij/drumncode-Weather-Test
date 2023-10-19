@@ -8,9 +8,5 @@
 import Foundation
 
 struct WeatherAPI {
-    var key: String {
-        get {
-            return "1f4cb4b07b1349fa90194950231010"
-        }
-    }
+    var key: String { "1f4cb4b07b1349fa90194950231010" }
 }

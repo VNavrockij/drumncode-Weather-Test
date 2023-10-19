@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
 
     let weatherManager = WeatherManager()
     var hourlyWeather: CurrentWeather?
+    let activityIndicator = UIActivityIndicatorView(style: .large)
 
     var receivedData: String? {
         didSet {
@@ -28,10 +29,21 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        firstLaunch()
+
         collectionView.delegate = self
         collectionView.dataSource = self
 
         setWeather()
+    }
+
+    func firstLaunch() {
+        temperatureLabel.text = ""
+        cityLabel.text = ""
+
+        activityIndicator.center = view.center
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
     }
 
     func setWeather() {
@@ -47,6 +59,7 @@ class MainViewController: UIViewController {
             self?.setUI(weatherData: weatherData)
             self?.saveLastSession(weatherData)
             self?.hourlyWeather = weatherData
+            self?.activityIndicator.stopAnimating()
         }
     }
 
@@ -68,6 +81,7 @@ class MainViewController: UIViewController {
         self.cityLabel.text = weatherData.location.name
         self.temperatureLabel.text = String(weatherData.current.tempC) + Constatnts.temperature
         collectionView.reloadData()
+        self.activityIndicator.stopAnimating()
     }
 
     func getWeatherFromUserDefaults() -> CurrentWeather? {

@@ -114,7 +114,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0oo-LR-A9Z">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="suj-5I-GfZ">
+                        <barButtonItem key="rightBarButtonItem" id="suj-5I-GfZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="89X-Nc-34h">
                                 <rect key="frame" x="342" y="4.6666666666666679" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

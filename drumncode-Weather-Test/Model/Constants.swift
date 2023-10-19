@@ -13,4 +13,5 @@ struct Constatnts {
     static let saveSession = "savedWeather"
     static let defaultCity = "Zaporozhye"
     static let tableViewIdentifier = "CityTableViewCell"
+    static let lastSearch = "Last search"
 }

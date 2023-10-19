@@ -28,6 +28,7 @@ class SearchViewController: UIViewController {
 
         navigationItem.titleView = searchBar
         searchBar.delegate = self
+
         searchHandler = { [weak self] searchText in
             if let firstViewController = self?.navigationController?.viewControllers.first as? MainViewController {
                 firstViewController.receivedData = searchText
@@ -44,10 +45,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Удаляем элемент из источника данных
             DataManager.shared.arrCities.remove(at: indexPath.row)
-
-            // Удаляем ячейку из таблицы
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -63,7 +61,7 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Last search"
+        Constatnts.lastSearch
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -75,7 +73,8 @@ extension SearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewIdentifier,
+                                                       for: indexPath)
 
         cell.textLabel?.text = DataManager.shared.arrCities[indexPath.row]
         return cell
