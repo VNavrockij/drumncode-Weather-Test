@@ -170,8 +170,8 @@
             filePath = "drumncode-Weather-Test/Model/WeatherManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "fetchWeather(cityName:completionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -206,6 +206,134 @@
                   offsetFromSymbolStart = "310">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CAC8C7B8-0023-471A-AFAC-08B4AA4C71C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drumncode-Weather-Test/Model/WeatherManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "fetchWeather(cityName:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CAC8C7B8-0023-471A-AFAC-08B4AA4C71C7 - 55cc28bb1ce151a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;drumncode_Weather_Test.CurrentWeather, Alamofire.AFError&gt;) -&gt; () in drumncode_Weather_Test.WeatherService.fetchWeather(cityName: Swift.String, completionHandler: (drumncode_Weather_Test.CurrentWeather) -&gt; ()) -&gt; ()"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/Model/WeatherManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "270">
+               </Location>
+               <Location
+                  uuid = "CAC8C7B8-0023-471A-AFAC-08B4AA4C71C7 - 55cc28bb1ce151a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;drumncode_Weather_Test.CurrentWeather, Alamofire.AFError&gt;) -&gt; () in drumncode_Weather_Test.WeatherService.fetchWeather(cityName: Swift.String, completionHandler: (drumncode_Weather_Test.CurrentWeather) -&gt; ()) -&gt; ()"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/Model/WeatherManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "294">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "93FB7E83-8D66-4F0F-A4D6-109BC54C5699"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drumncode-Weather-Test/MainFlow/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "setCityWeather(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "93FB7E83-8D66-4F0F-A4D6-109BC54C5699 - edb533a923a9afc2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "drumncode_Weather_Test.MainViewController.setCityWeather(Swift.String) -&gt; ()"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/MainFlow/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  uuid = "93FB7E83-8D66-4F0F-A4D6-109BC54C5699 - bc2b39713f2cdc18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (drumncode_Weather_Test.CurrentWeather) -&gt; () in drumncode_Weather_Test.MainViewController.setCityWeather(Swift.String) -&gt; ()"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/MainFlow/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "333">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D5E4B10-DABC-4B49-B5E0-BBB6B5B9AE52"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drumncode-Weather-Test/Model/WeatherService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "fetchWeather(cityName:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B3AED574-7DBA-42C8-B5E7-FB7A0D1E692F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drumncode-Weather-Test/MainFlow/HourlyCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "configureCell(forecast:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

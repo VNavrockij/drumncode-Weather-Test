@@ -36,11 +36,6 @@ struct Location: Codable {
     let name: String
     let lat, lon: Double
     let localtime: String
-
-    enum CodingKeys: String, CodingKey {
-        case name, lat, lon
-        case localtime
-    }
 }
 
 // MARK: - Forecast
@@ -54,9 +49,9 @@ struct Forecastday: Codable {
     let hour: [Hour]
 
     enum CodingKeys: String, CodingKey {
-        case date
-        case hour
-    }
+            case date
+            case hour
+        }
 }
 
 // MARK: - Hour

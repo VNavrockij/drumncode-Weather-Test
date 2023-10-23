@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
 
-    let weatherManager = WeatherManager()
+    let weatherService = WeatherService()
     var hourlyWeather: CurrentWeather?
     let activityIndicator = UIActivityIndicatorView(style: .large)
 
@@ -55,7 +55,7 @@ class MainViewController: UIViewController {
     }
 
     func setCityWeather(_ city: String) {
-        weatherManager.fetchWeather(cityName: city) { [weak self] weatherData in
+        weatherService.fetchWeather(cityName: city) { [weak self] weatherData in
             self?.setUI(weatherData: weatherData)
             self?.saveLastSession(weatherData)
             self?.hourlyWeather = weatherData

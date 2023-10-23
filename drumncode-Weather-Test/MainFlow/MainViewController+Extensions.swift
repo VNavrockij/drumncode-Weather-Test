@@ -52,11 +52,14 @@ extension MainViewController {
 // MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 90, height: 90)
+        .init(width: 90, height: 90)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
         1.0
     }
 
@@ -79,9 +82,9 @@ extension MainViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueCell(withType: HourlyCollectionViewCell.self,
-                                                    for: indexPath)
-        else { return .init()}
+        guard
+            let cell = collectionView.dequeueCell(withType: HourlyCollectionViewCell.self, for: indexPath)
+        else { return .init() }
 
         let forecastDay = hourlyWeather?.forecast.forecastday[0].hour[indexPath.row]
 

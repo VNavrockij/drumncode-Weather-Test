@@ -18,8 +18,20 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         guard let hourly = forecast?.time else { return }
         guard let tempC = forecast?.tempC else { return }
 
-        hourlyLabel?.text = formatTimeString(hourly)
+        hourlyLabel?.text = hourly
         iconImageView?.imageFrom(url: url)
         hourlyTemperature?.text = String(tempC) + Constatnts.temperature
     }
 }
+
+//extension String {
+//    func toTimeString(with format: String) -> String? {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        if let date = dateFormatter.date(from: self) {
+//            dateFormatter.dateFormat = "HH:mm"
+//            return dateFormatter.string(from: date)
+//        }
+//        return nil
+//    }
+//}

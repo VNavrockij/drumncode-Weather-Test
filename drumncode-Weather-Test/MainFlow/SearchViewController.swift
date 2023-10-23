@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DataManager {
+class DataManager { //userdefaults
     static let shared = DataManager()
     var arrCities: [String] = []
 }
@@ -21,23 +21,17 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        self.navigationItem.setHidesBackButton(true, animated: true)
-
         navigationItem.titleView = searchBar
-        searchBar.delegate = self
 
-        searchHandler = { [weak self] searchText in
-            if let firstViewController = self?.navigationController?.viewControllers.first as? MainViewController {
+        searchHandler = { searchText in
+            if let firstViewController = self.navigationController?.viewControllers.first as? MainViewController {
                 firstViewController.receivedData = searchText
-                self?.navigationController?.popToViewController(firstViewController, animated: true)
+                self.navigationController?.popToViewController(firstViewController, animated: true)
             }
         }
     }
 
-    func reloadData() {
+    fileprivate func reloadData() {
         tableView.reloadData()
     }
 }
@@ -73,8 +67,7 @@ extension SearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewIdentifier,
-                                                       for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewIdentifier, for: indexPath)
 
         cell.textLabel?.text = DataManager.shared.arrCities[indexPath.row]
         return cell
@@ -103,4 +96,14 @@ public extension UITableView {
 
 public extension UITableViewCell {
     static var identifier: String { .init(describing: self) }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            DataManager.shared.arrCities.append(searchText)
+            reloadData()
+            searchHandler?(searchText)
+        }
+    }
 }
