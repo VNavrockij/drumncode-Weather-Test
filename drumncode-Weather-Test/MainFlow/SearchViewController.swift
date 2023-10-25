@@ -21,6 +21,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.registerCell(type: SearchTableViewCell.self)
+
         navigationItem.titleView = searchBar
 
         searchHandler = { searchText in
@@ -31,7 +33,7 @@ class SearchViewController: UIViewController {
         }
     }
 
-    fileprivate func reloadData() {
+    private func reloadData() {
         tableView.reloadData()
     }
 }
@@ -67,14 +69,27 @@ extension SearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewIdentifier, for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewCellIdentifier, for: indexPath)
+        guard
+            let cell = tableView.dequeueCell(withType: SearchTableViewCell.self)
+        else { return .init() }
 
-        cell.textLabel?.text = DataManager.shared.arrCities[indexPath.row]
+        cell.configureCell(city: DataManager.shared.arrCities[indexPath.row])
         return cell
     }
 }
 
 public extension UITableView {
+    /**
+     Register nibs faster by passing the type - if for some reason the `identifier` is different then it can be passed
+     - Parameter type: UITableViewCell.Type
+     - Parameter identifier: String?
+     */
+    func registerCell(type: UITableViewCell.Type, identifier: String? = nil) {
+        let cellId = String(describing: type)
+        register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: identifier ?? cellId)
+    }
+
     /**
      DequeueCell by passing the type of UITableViewCell
      - Parameter type: UITableViewCell.Type
