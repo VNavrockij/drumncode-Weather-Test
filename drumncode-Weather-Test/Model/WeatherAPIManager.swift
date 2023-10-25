@@ -18,6 +18,7 @@ final class WeatherAPIManager {
 
     enum Path {
         static let fetchWheather: String = "/forecast.json"
+        static let fetchCities: String = "/search.json"
     }
 
     private lazy var dateFrmatter: DateFormatter = {

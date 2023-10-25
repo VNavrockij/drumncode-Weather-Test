@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct SearchCity: Codable {
+    let name: String
+    let country: String
+}
+
 // MARK: - CurrentWeather
 struct CurrentWeather: Codable {
     let location: Location

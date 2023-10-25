@@ -17,6 +17,13 @@ class SearchViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
 
     var searchHandler: ((String) -> Void)?
+    let weatherService = WeatherService()
+    var arrSearchCities: [SearchCity] = [] {
+        didSet {
+//            tableView.reloadData()
+            print(arrSearchCities)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +39,10 @@ class SearchViewController: UIViewController {
             }
         }
         
-        guard let lastSearch = try? UserDefaults.standard.getObject(forKey: Constatnts.lastSearchFromTableView, castTo: [String].self) else { return }
+        guard 
+            let lastSearch = try? UserDefaults.standard.getObject(forKey: Constatnts.lastSearchFromTableView, 
+                                                                  castTo: [String].self)
+        else { return }
 
         DataManager.shared.arrCities = lastSearch
         tableView.reloadData()
@@ -44,7 +54,9 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, 
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             DataManager.shared.arrCities.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -129,10 +141,25 @@ extension SearchViewController: UISearchBarDelegate {
             searchHandler?(searchText)
         }
     }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // http://api.weatherapi.com/v1/search.json?key=281c99cdaff64e5a809155318231110&q=Khar
+        if searchText.count >= 4 {
+            weatherService.fetchCities(cityName: searchText) { searchCity in
+                self.arrSearchCities = searchCity
+//                print(self.arrSearchCities)
+            }
+        } else if searchText.count <= 4 {
+            arrSearchCities = []
+//            print(self.arrSearchCities)
+        }
+    }
 }
 
 extension SearchViewController {
     func saveLastSearch(arrCities: [String]) {
-        guard let userDefault = try? UserDefaults.standard.setObject(arrCities, forKey: Constatnts.lastSearchFromTableView) else { return }
+        guard 
+            let userDefault = try? UserDefaults.standard.setObject(arrCities, forKey: Constatnts.lastSearchFromTableView)
+        else { return }
     }
 }

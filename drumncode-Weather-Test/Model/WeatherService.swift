@@ -22,8 +22,8 @@ struct WeatherService {
 
         let fetchWeatherParams: FetchWeatherParams = .init(q: cityName)
 
-        AF.request(url, 
-                   method: .get, 
+        AF.request(url,
+                   method: .get,
                    parameters: fetchWeatherParams,
                    encoder: URLEncodedFormParameterEncoder.default).responseDecodable(of: CurrentWeather.self) { response in
             switch response.result {
@@ -31,6 +31,28 @@ struct WeatherService {
                     completionHandler(currentWeather)
                 case .failure(let error):
                     print("Error fetching weather: \(error)")
+            }
+            
+        }
+    }
+
+        func fetchCities(cityName: String, completionHandler: @escaping ([SearchCity]) -> Void) {
+            guard
+                let url: URL = .init(string: "\(WeatherAPIManager.Constants.baseUrl)\(WeatherAPIManager.Path.fetchCities)")
+            else { return }
+
+            let fetchWeatherParams: FetchWeatherParams = .init(q: cityName)
+
+            AF.request(url,
+                       method: .get,
+                       parameters: fetchWeatherParams,
+                       encoder: URLEncodedFormParameterEncoder.default).responseDecodable(of: [SearchCity].self) { response in
+                switch response.result {
+                    case .success(let cities):
+                        completionHandler(cities)
+                    case .failure(let error):
+                        print("Error fetching weather: \(error)")
+                }
             }
         }
 
@@ -44,5 +66,4 @@ struct WeatherService {
 //                    print(weatherFetcherror.localizedDescription)
 //            }
 //        }
-    }
 }
