@@ -66,7 +66,17 @@ extension SearchViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchHandler?(DataManager.shared.arrCities[indexPath.row])
+        switch indexPath.section {
+            case 0:
+                DataManager.shared.arrCities.append(self.arrSearchCities[indexPath.row].name)
+                tableView.reloadData()
+                saveLastSearch(arrCities: DataManager.shared.arrCities)
+                searchHandler?(arrSearchCities[indexPath.row].name)
+            case 1:
+                searchHandler?(DataManager.shared.arrCities[indexPath.row])
+            default:
+                break
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -83,7 +93,7 @@ extension SearchViewController: UITableViewDataSource {
             case 1:
                 return Constatnts.lastSearch
             default:
-                return "hyeta"
+                return ""
         }
     }
 
@@ -98,7 +108,7 @@ extension SearchViewController: UITableViewDataSource {
             case 1:
                 return DataManager.shared.arrCities.count
             default:
-                return 15
+                return .zero
         }
     }
 
@@ -107,15 +117,16 @@ extension SearchViewController: UITableViewDataSource {
         guard
             let cell = tableView.dequeueCell(withType: SearchTableViewCell.self)
         else { return .init() }
-        // Настройте ячейку с учетом indexPath.section и indexPath.row
 
         switch indexPath.section {
             case 0:
                 cell.configureCell(cities: arrSearchCities, indexPath: indexPath)
+                cell.hideCountryLabel(section: indexPath.section)
             case 1:
                 cell.configureCell(city: DataManager.shared.arrCities[indexPath.row])
+                cell.hideCountryLabel(section: indexPath.section)
             default:
-                UITableViewCell()
+                break
         }
 
         return cell
@@ -133,11 +144,11 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count >= 4 {
+        if searchText.count >= Constatnts.minCharacterForSearch {
             weatherService.fetchCities(cityName: searchText) { searchCity in
                 self.arrSearchCities = searchCity
             }
-        } else if searchText.count <= 4 {
+        } else if searchText.count <= Constatnts.minCharacterForSearch {
             arrSearchCities = []
         }
     }

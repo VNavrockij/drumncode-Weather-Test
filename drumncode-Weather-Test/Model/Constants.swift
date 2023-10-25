@@ -15,4 +15,5 @@ struct Constatnts {
     static let tableViewCellIdentifier = "SearchTableViewCell"
     static let lastSearch = "Last search"
     static let lastSearchFromTableView = "lastSearch"
+    static let minCharacterForSearch = 4
 }

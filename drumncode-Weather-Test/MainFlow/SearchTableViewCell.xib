@@ -44,7 +44,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="lastWeatherLabel" destination="7JW-n1-a9i" id="vlk-M1-GYe"/>
+                <outlet property="countryLabel" destination="7JW-n1-a9i" id="MXn-Au-th4"/>
                 <outlet property="searchCityLabel" destination="axX-7n-gJv" id="Eph-bZ-RH0"/>
             </connections>
             <point key="canvasLocation" x="170.22900763358777" y="33.098591549295776"/>

@@ -23,7 +23,7 @@ final class WeatherAPIManager {
 
     private lazy var dateFrmatter: DateFormatter = {
         let value: DateFormatter = .init()
-        value.dateFormat = "HH:mm"
+        value.dateFormat = "yyyy-MM-dd HH:mm"
         return value
     }()
 

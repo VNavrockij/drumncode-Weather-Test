@@ -9,7 +9,7 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     @IBOutlet private weak var searchCityLabel: UILabel!
-    @IBOutlet private weak var lastWeatherLabel: UILabel!
+    @IBOutlet private weak var countryLabel: UILabel!
     static func nib() -> UINib {
         UINib(nibName: Constatnts.tableViewCellIdentifier, bundle: nil)
     }
@@ -21,8 +21,6 @@ class SearchTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     func configureCell(city: String) {
@@ -31,7 +29,16 @@ class SearchTableViewCell: UITableViewCell {
 
     func configureCell(cities: [SearchCity], indexPath: IndexPath) {
         searchCityLabel.text = cities[indexPath.row].name
-        lastWeatherLabel.text = cities[indexPath.row].country
+        countryLabel.text = cities[indexPath.row].country
+    }
+
+    func hideCountryLabel(section: Int) {
+        countryLabel.isHidden = section == .zero ? false : true
+
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
     }
 
 }
