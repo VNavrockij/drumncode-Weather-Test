@@ -29,4 +29,9 @@ class SearchTableViewCell: UITableViewCell {
         searchCityLabel.text = city
     }
 
+    func configureCell(cities: [SearchCity], indexPath: IndexPath) {
+        searchCityLabel.text = cities[indexPath.row].name
+        lastWeatherLabel.text = cities[indexPath.row].country
+    }
+
 }

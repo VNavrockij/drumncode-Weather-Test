@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     let weatherService = WeatherService()
     var arrSearchCities: [SearchCity] = [] {
         didSet {
-//            tableView.reloadData()
+            tableView.reloadData()
             print(arrSearchCities)
         }
     }
@@ -76,15 +76,30 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Constatnts.lastSearch
+
+        switch section {
+            case 0:
+                return "Autocomplite"
+            case 1:
+                return Constatnts.lastSearch
+            default:
+                return "hyeta"
+        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        DataManager.shared.arrCities.count
+        switch section {
+            case 0:
+                return arrSearchCities.count
+            case 1:
+                return DataManager.shared.arrCities.count
+            default:
+                return 15
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,44 +107,19 @@ extension SearchViewController: UITableViewDataSource {
         guard
             let cell = tableView.dequeueCell(withType: SearchTableViewCell.self)
         else { return .init() }
+        // Настройте ячейку с учетом indexPath.section и indexPath.row
 
-        cell.configureCell(city: DataManager.shared.arrCities[indexPath.row])
+        switch indexPath.section {
+            case 0:
+                cell.configureCell(cities: arrSearchCities, indexPath: indexPath)
+            case 1:
+                cell.configureCell(city: DataManager.shared.arrCities[indexPath.row])
+            default:
+                UITableViewCell()
+        }
+
         return cell
     }
-}
-
-public extension UITableView {
-    /**
-     Register nibs faster by passing the type - if for some reason the `identifier` is different then it can be passed
-     - Parameter type: UITableViewCell.Type
-     - Parameter identifier: String?
-     */
-    func registerCell(type: UITableViewCell.Type, identifier: String? = nil) {
-        let cellId = String(describing: type)
-        register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: identifier ?? cellId)
-    }
-
-    /**
-     DequeueCell by passing the type of UITableViewCell
-     - Parameter type: UITableViewCell.Type
-     */
-    func dequeueCell<T: UITableViewCell>(withType type: T.Type) -> T? {
-        dequeueReusableCell(withIdentifier: type.identifier) as? T
-    }
-
-    /**
-     DequeueCell by passing the type of UITableViewCell and IndexPath
-     - Parameter type: UITableViewCell.Type
-     - Parameter indexPath: IndexPath
-     */
-    func dequeueCell<T: UITableViewCell>(withType type: T.Type, for indexPath: IndexPath) -> T? {
-        dequeueReusableCell(withIdentifier: type.identifier, for: indexPath) as? T
-    }
-
-}
-
-public extension UITableViewCell {
-    static var identifier: String { .init(describing: self) }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -143,15 +133,12 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // http://api.weatherapi.com/v1/search.json?key=281c99cdaff64e5a809155318231110&q=Khar
         if searchText.count >= 4 {
             weatherService.fetchCities(cityName: searchText) { searchCity in
                 self.arrSearchCities = searchCity
-//                print(self.arrSearchCities)
             }
         } else if searchText.count <= 4 {
             arrSearchCities = []
-//            print(self.arrSearchCities)
         }
     }
 }
@@ -159,7 +146,7 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController {
     func saveLastSearch(arrCities: [String]) {
         guard 
-            let userDefault = try? UserDefaults.standard.setObject(arrCities, forKey: Constatnts.lastSearchFromTableView)
+            (try? UserDefaults.standard.setObject(arrCities, forKey: Constatnts.lastSearchFromTableView)) != nil
         else { return }
     }
 }

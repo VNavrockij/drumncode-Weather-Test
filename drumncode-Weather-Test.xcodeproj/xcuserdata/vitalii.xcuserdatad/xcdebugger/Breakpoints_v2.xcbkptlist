@@ -362,8 +362,8 @@
             filePath = "drumncode-Weather-Test/MainFlow/SearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
             <Locations>
@@ -489,6 +489,54 @@
                   startingLineNumber = "46"
                   endingLineNumber = "46"
                   offsetFromSymbolStart = "854">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2717DFE-CE6E-4A2B-9C82-E1C158FD469E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "drumncode-Weather-Test/MainFlow/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C2717DFE-CE6E-4A2B-9C82-E1C158FD469E - 22c909c760eea08f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "drumncode_Weather_Test.SearchViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/MainFlow/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "401">
+               </Location>
+               <Location
+                  uuid = "C2717DFE-CE6E-4A2B-9C82-E1C158FD469E - 22c909c760eea08f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "drumncode_Weather_Test.SearchViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "drumncode-Weather-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vitalii/StudyData/Programming/Swift/2022/myProject/drumncode-Weather-Test/drumncode-Weather-Test/MainFlow/SearchViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "282">
                </Location>
             </Locations>
          </BreakpointContent>
