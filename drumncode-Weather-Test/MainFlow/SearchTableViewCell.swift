@@ -10,7 +10,6 @@ import UIKit
 class SearchTableViewCell: UITableViewCell {
     @IBOutlet private weak var searchCityLabel: UILabel!
     @IBOutlet private weak var lastWeatherLabel: UILabel!
-    
     static func nib() -> UINib {
         UINib(nibName: Constatnts.tableViewCellIdentifier, bundle: nil)
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DataManager { //userdefaults
+class DataManager: Codable { //userdefaults
     static let shared = DataManager()
     var arrCities: [String] = []
 }
@@ -31,6 +31,11 @@ class SearchViewController: UIViewController {
                 self.navigationController?.popToViewController(firstViewController, animated: true)
             }
         }
+        
+        guard let lastSearch = try? UserDefaults.standard.getObject(forKey: Constatnts.lastSearchFromTableView, castTo: [String].self) else { return }
+
+        DataManager.shared.arrCities = lastSearch
+        tableView.reloadData()
     }
 
     private func reloadData() {
@@ -43,6 +48,8 @@ extension SearchViewController: UITableViewDelegate {
         if editingStyle == .delete {
             DataManager.shared.arrCities.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            saveLastSearch(arrCities: DataManager.shared.arrCities)
+            tableView.reloadData()
         }
     }
 
@@ -118,7 +125,14 @@ extension SearchViewController: UISearchBarDelegate {
         if let searchText = searchBar.text {
             DataManager.shared.arrCities.append(searchText)
             reloadData()
+            saveLastSearch(arrCities: DataManager.shared.arrCities)
             searchHandler?(searchText)
         }
+    }
+}
+
+extension SearchViewController {
+    func saveLastSearch(arrCities: [String]) {
+        guard let userDefault = try? UserDefaults.standard.setObject(arrCities, forKey: Constatnts.lastSearchFromTableView) else { return }
     }
 }
