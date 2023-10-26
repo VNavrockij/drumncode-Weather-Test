@@ -24,14 +24,14 @@ class HourlyCollectionViewCell: UICollectionViewCell {
     }
 }
 
-//extension String {
-//    func toTimeString(with format: String) -> String? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-//        if let date = dateFormatter.date(from: self) {
-//            dateFormatter.dateFormat = "HH:mm"
-//            return dateFormatter.string(from: date)
-//        }
-//        return nil
-//    }
-//}
+// extension String {
+//     func toTimeString(with format: String) -> String? {
+//         let dateFormatter = DateFormatter()
+//         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//         if let date = dateFormatter.date(from: self) {
+//             dateFormatter.dateFormat = "HH:mm"
+//             return dateFormatter.string(from: date)
+//         }
+//         return nil
+//     }
+// }

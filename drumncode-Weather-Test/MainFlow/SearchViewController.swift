@@ -6,12 +6,12 @@
 //
 
 import UIKit
-
-class DataManager: Codable { //userdefaults
+// MARK: - DataManager
+final class DataManager: Codable {
     static let shared = DataManager()
     var arrCities: [String] = []
 }
-
+// MARK: - SearchViewController
 class SearchViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
@@ -32,29 +32,13 @@ class SearchViewController: UIViewController {
 
         navigationItem.titleView = searchBar
 
-        searchHandler = { searchText in
-            if let firstViewController = self.navigationController?.viewControllers.first as? MainViewController {
-                firstViewController.receivedData = searchText
-                self.navigationController?.popToViewController(firstViewController, animated: true)
-            }
-        }
-        
-        guard 
-            let lastSearch = try? UserDefaults.standard.getObject(forKey: Constatnts.lastSearchFromTableView, 
-                                                                  castTo: [String].self)
-        else { return }
-
-        DataManager.shared.arrCities = lastSearch
-        tableView.reloadData()
-    }
-
-    private func reloadData() {
-        tableView.reloadData()
+        searchHandlerFunc()
+        setLastSession()
     }
 }
-
+// MARK: - UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, 
+    func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -83,13 +67,13 @@ extension SearchViewController: UITableViewDelegate {
         UITableView.automaticDimension
     }
 }
-
+// MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
         switch section {
             case 0:
-                return "Autocomplite"
+                return Constatnts.autocomplite
             case 1:
                 return Constatnts.lastSearch
             default:
@@ -113,7 +97,7 @@ extension SearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewCellIdentifier, for: indexPath)
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewCellIdentifier, for: indexPath)
         guard
             let cell = tableView.dequeueCell(withType: SearchTableViewCell.self)
         else { return .init() }
@@ -132,7 +116,7 @@ extension SearchViewController: UITableViewDataSource {
         return cell
     }
 }
-
+// MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
@@ -153,11 +137,33 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
 }
-
-extension SearchViewController {
+// MARK: - extension SearchViewController
+private extension SearchViewController {
     func saveLastSearch(arrCities: [String]) {
-        guard 
+        guard
             (try? UserDefaults.standard.setObject(arrCities, forKey: Constatnts.lastSearchFromTableView)) != nil
         else { return }
+    }
+
+    func setLastSession() {
+        guard
+            let lastSearch = try? UserDefaults.standard.getObject(forKey: Constatnts.lastSearchFromTableView,
+                                                                  castTo: [String].self)
+        else { return }
+
+        DataManager.shared.arrCities = lastSearch
+        tableView.reloadData()
+    }
+
+    func searchHandlerFunc() {
+        searchHandler = { searchText in
+            if let firstViewController = self.navigationController?.viewControllers.first as? MainViewController {
+                firstViewController.receivedData = searchText
+                self.navigationController?.popToViewController(firstViewController, animated: true)
+            }
+        }
+    }
+    func reloadData() {
+        tableView.reloadData()
     }
 }

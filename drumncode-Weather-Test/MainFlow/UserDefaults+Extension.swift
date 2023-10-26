@@ -12,7 +12,6 @@ protocol ObjectSavable {
     func getObject<T>(forKey: String, castTo type: T.Type) throws -> T where T: Decodable
 }
 
-
 extension UserDefaults: ObjectSavable {
     enum ObjectSavableError: String, LocalizedError {
         case unableToEncode = "Unable to encode object into data"

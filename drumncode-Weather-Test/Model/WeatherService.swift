@@ -15,7 +15,6 @@ struct FetchWeatherParams: Codable {
 
 struct WeatherService {
     func fetchWeather(cityName: String, completionHandler: @escaping (CurrentWeather) -> Void) {
-
         guard
             let url: URL = .init(string: "\(WeatherAPIManager.Constants.baseUrl)\(WeatherAPIManager.Path.fetchWheather)")
         else { return }
@@ -30,9 +29,8 @@ struct WeatherService {
                 case .success(let currentWeather):
                     completionHandler(currentWeather)
                 case .failure(let error):
-                    print("Error fetching weather: \(error)")
+                    print("Error fetching weather: \(error.localizedDescription)")
             }
-            
         }
     }
 
@@ -51,12 +49,10 @@ struct WeatherService {
                     case .success(let cities):
                         completionHandler(cities)
                     case .failure(let error):
-                        print("Error fetching weather: \(error)")
+                        print("Error fetching weather: \(error.localizedDescription)")
                 }
             }
         }
-
-
 //        let request = AF.request("https://api.weatherapi.com/v1/forecast.json?key=\(requestWeatherAPI.key)&q=\(cityName)")
 //        request.responseDecodable(of: CurrentWeather.self) { response in
 //            switch response.result {
