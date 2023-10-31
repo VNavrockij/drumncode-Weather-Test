@@ -17,4 +17,5 @@ struct Constatnts {
     static let lastSearchFromTableView = "lastSearch"
     static let minCharacterForSearch = 4
     static let autocomplite = "Autocomplite"
+    static let cellID = "cell"
 }

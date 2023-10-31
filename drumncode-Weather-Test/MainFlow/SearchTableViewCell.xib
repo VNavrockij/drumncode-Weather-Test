@@ -35,7 +35,7 @@
                         </subviews>
                     </stackView>
                 </subviews>
-                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="eeS-24-pcH" secondAttribute="trailing" constant="8" id="hBE-Rt-GvX"/>
                     <constraint firstItem="eeS-24-pcH" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="l1G-jz-Spa"/>

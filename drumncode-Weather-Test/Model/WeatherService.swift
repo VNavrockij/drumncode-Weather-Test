@@ -20,15 +20,17 @@ struct WeatherService {
         else { return }
 
         let fetchWeatherParams: FetchWeatherParams = .init(q: cityName)
-
-        AF.request(url,
-                   method: .get,
-                   parameters: fetchWeatherParams,
-                   encoder: URLEncodedFormParameterEncoder.default).responseDecodable(of: CurrentWeather.self) { response in
-            switch response.result {
-                case .success(let currentWeather):
-                    completionHandler(currentWeather)
-                case .failure(let error):
+        
+        AF.request(
+            url,
+            method: .get,
+            parameters: fetchWeatherParams,
+            encoder: URLEncodedFormParameterEncoder.default
+        ).responseDecodable(of: CurrentWeather.self) { response in
+                switch response.result {
+                    case .success(let currentWeather):
+                        completionHandler(currentWeather)
+                    case .failure(let error):
                     print("Error fetching weather: \(error.localizedDescription)")
             }
         }

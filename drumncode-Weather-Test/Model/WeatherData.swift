@@ -54,9 +54,9 @@ struct Forecastday: Codable {
     let hour: [Hour]
 
     enum CodingKeys: String, CodingKey {
-            case date
-            case hour
-        }
+        case date
+        case hour
+    }
 }
 
 // MARK: - Hour
