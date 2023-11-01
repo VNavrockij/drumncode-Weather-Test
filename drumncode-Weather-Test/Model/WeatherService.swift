@@ -20,7 +20,6 @@ struct WeatherService {
         else { return }
 
         let fetchWeatherParams: FetchWeatherParams = .init(q: cityName)
-        
         AF.request(
             url,
             method: .get,

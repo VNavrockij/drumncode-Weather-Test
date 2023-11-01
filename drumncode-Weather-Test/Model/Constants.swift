@@ -18,4 +18,6 @@ struct Constatnts {
     static let minCharacterForSearch = 4
     static let autocomplite = "Autocomplite"
     static let cellID = "cell"
+    static let customVC = "CustomSearchResultsController"
+    static let mainStoryBoard = "Main"
 }

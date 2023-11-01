@@ -23,14 +23,14 @@ class SearchViewController: UIViewController {
     let weatherService = WeatherService()
     var arrSearchCities: [String] = [] {
         didSet {
-//            print(arrSearchCities)
+            //            print(arrSearchCities)
         }
     }
-    
+
     private lazy var customSearchController: CustomSearchResultsController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: Constatnts.mainStoryBoard, bundle: nil)
         guard
-            let customSearchVC = storyboard.instantiateViewController(withIdentifier: "CustomSearchResultsController")
+            let customSearchVC = storyboard.instantiateViewController(withIdentifier: Constatnts.customVC)
                 as? CustomSearchResultsController else { return .init() }
 
         return customSearchVC
@@ -46,19 +46,10 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerCell(type: SearchTableViewCell.self)
-
         self.title = "Search"
-
-        // Настройка UISearchController
-
+        tableView.registerCell(type: SearchTableViewCell.self)
         configureSearchController()
-
-        //        navigationItem.titleView = searchBar
-
-
         customSearchController.searchHandler = { [weak self] searchText in
-            // Обработка результатов поиска
             self?.handleSearch(with: searchText)
         }
 
@@ -73,7 +64,6 @@ class SearchViewController: UIViewController {
         definesPresentationContext = true
     }
 
-    // Функция для обработки результатов поиска
     private func handleSearch(with searchText: String) {
         if let searchText = self.searchController.searchBar.text {
             reloadData()
@@ -90,7 +80,6 @@ extension SearchViewController: UISearchResultsUpdating {
         if searchText.count >= Constatnts.minCharacterForSearch {
             weatherService.fetchCities(cityName: searchText) { searchCity in
                 self.customSearchController.fillSearchedCities(cities: searchCity)
-//                self.arrSearchCities = searchCity
             }
         } else if searchText.count <= Constatnts.minCharacterForSearch {
             self.customSearchController.fillSearchedCities(cities: [])
@@ -114,17 +103,8 @@ extension SearchViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch indexPath.section {
-//            case 0:
-//                DataManager.shared.arrCities.append(self.arrSearchCities[indexPath.row].name)
-//                tableView.reloadData()
-//                saveLastSearch(arrCities: DataManager.shared.arrCities)
-//                searchHandler?(arrSearchCities[indexPath.row].name)
-//            case 1:
-                searchHandler?(DataManager.shared.arrCities[indexPath.row])
-//            default:
-//                break
-        }
+        searchHandler?(DataManager.shared.arrCities[indexPath.row])
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
@@ -133,48 +113,23 @@ extension SearchViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        switch section {
-            case 0:
-                return ""
-            case 1:
-                return Constatnts.lastSearch
-            default:
-                return ""
-        }
+        Constatnts.lastSearch
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-            case 0:
-                return arrSearchCities.count
-            case 1:
-                return DataManager.shared.arrCities.count
-            default:
-                return .zero
-        }
+        DataManager.shared.arrCities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: Constatnts.tableViewCellIdentifier, for: indexPath)
         guard
             let cell = tableView.dequeueCell(withType: SearchTableViewCell.self)
         else { return .init() }
 
-//        switch indexPath.section {
-//            case 0:
-//                cell.configureCell(cities: arrSearchCities, indexPath: indexPath)
-//                cell.hideCountryLabel(section: indexPath.section)
-//            case 1:
-                cell.configureCell(city: DataManager.shared.arrCities[indexPath.row])
-                cell.hideCountryLabel(section: indexPath.section)
-//            default:
-//                break
-//        }
+        cell.configureCell(city: DataManager.shared.arrCities[indexPath.row])
 
         return cell
     }
