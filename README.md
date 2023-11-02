@@ -1,4 +1,4 @@
-# Quiz-MVC
+# Weather App
 
 ![Scren1](Documentation/01.png)
 ![Scren2](Documentation/02.png)
